@@ -32,66 +32,33 @@ export default function Home() {
     });
   });
 
+  const shuffleArray = (arr) => {
+    let currentIndex = arr.length,  randomIndex;
+
+    while (currentIndex > 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [arr[currentIndex], arr[randomIndex]] = [
+        arr[randomIndex], arr[currentIndex]];
+    }
+
+    return arr
+  }
+
   const handleGenerateRotation = () => {
     setLoading(false)
 
-    let rota = ['wrath','wrath','sunfire','moonfire']
+    let rota = shuffleArray(['wrath','wrath','sunfire','moonfire'])
 
-    let currentIndex = rota.length,  randomIndex;
+    let part_1 = [rota[0], rota[1], 'starfire']
+    part_1 = shuffleArray(part_1)
 
-    // While there remain elements to shuffle.
-    while (currentIndex > 0) {
-  
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [rota[currentIndex], rota[randomIndex]] = [
-        rota[randomIndex], rota[currentIndex]];
-    }
-
-    let part_1 = []
-    part_1.push(rota[0])
-    part_1.push(rota[1])
-    part_1.push('starfire')
-
-    currentIndex = part_1.length;
-
-    // While there remain elements to shuffle.
-    while (currentIndex > 0) {
-  
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [part_1[currentIndex], part_1[randomIndex]] = [
-        part_1[randomIndex], part_1[currentIndex]];
-    }
-
-    let part_2 = []
-    part_2.push(rota[2])
-    part_2.push(rota[3])
-    part_2.push('starfire')
-
-    currentIndex = part_2.length;
-
-    // While there remain elements to shuffle.
-    while (currentIndex > 0) {
-  
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [part_2[currentIndex], part_2[randomIndex]] = [
-        part_2[randomIndex], part_2[currentIndex]];
-    }
+    let part_2 = [rota[2], rota[3], 'starfire']
+    part_2 = shuffleArray(part_2)
 
     let finalRota = ['starsurge',...part_1,'starsurge',...part_2]
+    
     setRotation(finalRota)
-
   }
 
   return (
